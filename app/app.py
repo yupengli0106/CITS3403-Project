@@ -71,10 +71,10 @@ def register():
 
 
 
-@app.route('/question', methods=['POST', 'GET'])
-def question():
-    num=random.randint(1,100)
-    check_question = QuestionModel.query.filter_by(id=1).first()
+@app.route('/questions', methods=['POST', 'GET'])
+def get_question():
+    num=random.randint(1,206)
+    check_question = QuestionModel.query.filter_by(id=num).first()
     ques = check_question.content
     ans = check_question.answer
     return {'question': ques, 'answer': ans}
