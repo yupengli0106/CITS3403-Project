@@ -13,19 +13,30 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # instantiate database
 db = SQLAlchemy(app)
 
-
+# user model
 class UserModel(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True)
     password = db.Column(db.String(20))
 
-
+# question model
 class QuestionModel(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
     answer = db.Column(db.String(4))
+
+# read QA.txt file and store questions and answers in QuestionModel
+def read_file(filename):
+    with open(filename, 'r') as f:
+        content = f.readlines()
+    for line in content:
+        line = line.strip()
+        line = line.split('\t')
+        question = QuestionModel(content=line[1], answer=line[0])
+        db.session.add(question)
+    db.session.commit()
 
 
 '''
@@ -53,3 +64,4 @@ if __name__ == '__main__':
     db.session.add(admin)
     db.session.commit()
     # app.run(debug=True)
+    read_file('static/questions.txt')
