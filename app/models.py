@@ -18,14 +18,14 @@ class UserModel(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True)
-    password = db.Column(db.String(20))
+    password = db.Column(db.String(200), nullable=False)
 
 # question model
 class QuestionModel(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text)
-    answer = db.Column(db.String(4))
+    content = db.Column(db.Text,nullable=False)
+    answer = db.Column(db.String(4), nullable=False)
 
 # read QA.txt file and store questions and answers in QuestionModel
 def read_file(filename):
