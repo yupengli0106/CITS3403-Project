@@ -69,7 +69,7 @@ def register():
         print(name, hash_pwd)
         check_name = UserModel.query.filter_by(username=name).first()#username is unique
         # check if the username is already in the database
-        if check_name.username==name:
+        if check_name is not None:
             print('username already exists')
             flash('Username already exists')
             return {'status': 'fail'}
