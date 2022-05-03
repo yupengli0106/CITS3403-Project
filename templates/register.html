@@ -70,20 +70,21 @@
 				return;
 			}
 			$.ajax({
-			  url: '',
-			  type: 'POST',
-			  dataType: 'json',
-			  data: {'username': username, 'password': password},
-			  success: function(data, textStatus, xhr) {
-			    //called when successful
-			  },
-			  error: function(xhr, textStatus, errorThrown) {
-			    //called when there is an error
-			  }
+				url: '/register',
+				type: 'POST',
+				dataType: 'json',
+				data: {'username': username, 'password': password},
+				success: function(data, textStatus, xhr) {
+					if(data.success == "success"){
+						window.location.href = "/login";
+					}else{
+						alert('username already exists');
+					}
+				},
+				error: function(xhr, textStatus, errorThrown) {
+				//called when there is an error
+				}
 			});
-			
-
 		});
-
 	});
 </script>
