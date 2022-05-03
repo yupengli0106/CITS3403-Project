@@ -1,0 +1,89 @@
+<html lang="en">
+	<head>
+		<title>register</title>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			.login_box{
+				width: 350px;
+				height: 200px;
+				margin: 200px auto;
+			}
+			.form-control{
+				width: 170px;
+				margin-left: 20px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="login_box">
+			<form class="form-horizontal">
+		  		<div class="form-group">
+		    		<label for="username" class="col-sm-2 control-label">username</label>
+		    		<div class="col-sm-10">
+		    			<input type="text" class="form-control" id="username" placeholder="username">
+	    			</div>
+	  			</div>
+	  			<div class="form-group">
+	    			<label for="password" class="col-sm-2 control-label">password</label>
+	    			<div class="col-sm-10">
+	      				<input type="password" class="form-control" id="password" placeholder="password">
+	    			</div>
+	  			</div>
+	  			<div class="form-group">
+	    			<label for="password2" class="col-sm-2 control-label">confirm password</label>
+	    			<div class="col-sm-10">
+	      				<input type="password" class="form-control" id="password2" placeholder="password">
+	    			</div>
+	  			</div>
+	  			<div class="form-group">
+	    			<div class="col-sm-offset-2 col-sm-10">
+	      				<button id="submit" class="btn btn-default">register</button>
+	    			</div>
+	  			</div>
+			</form>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){
+			var username = $("#username").val().trim();
+			var password = $("#password").val().trim();
+			var password2 = $("#password2").val().trim();
+			if(username.length > 20){
+				alert("The length of the user name cannot over 20 characters");
+				return;
+			}
+			if(username.length == 0){
+				alert("please input username;");
+				return;
+			}
+			if(password.length == 0){
+				alert("please input password;");
+				return;
+			}
+			if(password != password2){
+				alert("The two passwords are inconsistent");
+				return;
+			}
+			$.ajax({
+			  url: '',
+			  type: 'POST',
+			  dataType: 'json',
+			  data: {'username': username, 'password': password},
+			  success: function(data, textStatus, xhr) {
+			    //called when successful
+			  },
+			  error: function(xhr, textStatus, errorThrown) {
+			    //called when there is an error
+			  }
+			});
+			
+
+		});
+
+	});
+</script>
