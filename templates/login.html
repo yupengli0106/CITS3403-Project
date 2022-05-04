@@ -40,7 +40,7 @@
 	    			<div class="col-sm-offset-2 col-sm-10">
 	      				<button id="submit" type="submit" class="btn btn-default">login</button>
 						<span>
-							<input type="checkbox"  id="remember_me" > remember me?
+							<input type="checkbox"  id="remember_me" checked> remember me?
 						</span>
 	    			</div>
 	    		</div>
@@ -62,6 +62,7 @@
 			event.preventDefault();
 			var username = $("#username").val().trim();
 			var password = $("#password").val().trim();
+			var remember = false;
 			if(username.length == 0 ){
 				alert("Please input username");
 				return;
@@ -70,18 +71,21 @@
 				alert("Please input password");
 				return;
 			}
+			if($("#remember_me").is(':checked')){
+				remember = true;
+			}
 			$.ajax({
 				url: '/login',
 				type: 'POST',
 				dataType: 'json',
-				data: {'username': username, 'password': password},
+				data: {'username': username, 'password': password, 'remember': remember},
 				success: function(data, textStatus, xhr) {
 					if(data.status == 'success'){
 						window.location.href = '/game.html';
 					}else{
 						alert("The user name does not match the password");
 					}
-				}
+				},
 				error: function(xhr, textStatus, errorThrown) {
 				//called when there is an error
 				}
