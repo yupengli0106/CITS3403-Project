@@ -1,54 +1,48 @@
-import os
-import methods
-from flask import Flask, render_template, request, flash
-from flask_sqlalchemy import SQLAlchemy
+from config import app, db
+from flask_login import login_user, logout_user, login_required
+from flask import render_template, request, flash
 from sqlalchemy import func
-from models import UserModel, QuestionModel
-
-#get absolute path
-basedir = os.path.abspath(os.path.dirname(__file__))
-
-app = Flask(__name__)
-
-# Configure database path
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'flask_sql.db')
-# Disable dynamic tracking of database modifications
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# instantiate database
-db = SQLAlchemy(app)
-
-app.secret_key = "super secret key"
-db.create_all()
-
+from models import UserModel, QuestionModel, FileReader
+mylist = []  # store question id
 
 @app.route('/')
-def home_page():
+@app.route('/login.html')
+def index():
     return render_template('login.html')
-
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    # clear mylist[] when a new user login
+    mylist.clear()
     if request.method == 'POST':
-        print('login request successful')
         name = request.form.get('username')
         pwd = request.form.get('password')
-        if(name == None or pwd == None):
-            flash('Please enter both username and password')
-            return {'status': 'fail'}
-        check_user=UserModel.query.filter_by(username=name,password=pwd).first()
-        #get hash value of password
-        hash_pwd =check_user.password 
-        #check if the hash value of password is equal to the input password
-        pwd_authentication=methods.decode_password(hash_pwd,pwd) 
-        if pwd_authentication:
-            print('login successful')
+        check_remember= request.form.get('remember')
+        #username is unique
+        user=UserModel.query.filter_by(username=name).first()
+        # check if the user existed and the password is correct
+        if user is not None and UserModel.decode_password(user.hash_password, pwd):
+            curr_user = UserModel()
+            curr_user.id = user.id
+            curr_user.username = user.username
+            # create user 'session'
+            login_user(curr_user,remember=check_remember)
+            print("user id:", curr_user.username, ' login successful')
             return {'status': 'success'}
         else:
-            print('login failed')
+            print('login failed, username or password is incorrect')
             return {'status': 'fail'}
+    return render_template('login.html')
 
+@app.route('/logout', methods=['POST', 'GET'])
+@login_required
+def logout():
+    # clear session
+    logout_user()
+    return render_template('login.html')
 
-@app.route('/game', methods=['POST', 'GET'])
+@app.route('/game.html', methods=['POST', 'GET'])
+@login_required
 def game():
     return render_template('game.html')
 
@@ -57,38 +51,46 @@ def game():
 def register_page():
     return render_template('register.html')
 
-
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        print('register request successful')
         name = request.form.get('username')
         pwd = request.form.get('password')
-        # convert password to hash value
-        hash_pwd=methods.encode_password(pwd)
-        print(name, hash_pwd)
-        check_name = UserModel.query.filter_by(username=name).first()#username is unique
+        #username is unique
+        user = UserModel.query.filter_by(username=name).first()
         # check if the username is already in the database
-        if check_name is not None:
+        if user is not None:
             print('username already exists')
             flash('Username already exists')
             return {'status': 'fail'}
-        if(name == None or pwd == None):
-            return {'status': 'fail'}
-        user = UserModel(username=name, password=pwd)
-        db.session.add(user)
+        # convert password to hash value
+        hash_pwd = UserModel.encode_password(pwd)
+        print(name, hash_pwd)
+        set_user = UserModel(username=name, hash_password=hash_pwd)
+        db.session.add(set_user)
         db.session.commit()
-    return {'status': 'success'}
-
+        print('register successful')
+        return {'status': 'success'}
+    return render_template('register.html')
 
 # ramdomly generate a question from QuestionModel and can't be repeated
 @app.route('/questions', methods=['POST', 'GET'])
 def get_question():
-    check_question = QuestionModel.query.order_by(func.random()).first()
-    ques = check_question.content
-    ans = check_question.answer
-    return {'question': ques, 'answer': ans}
+    while True:
+        check_question = QuestionModel.query.order_by(func.random()).first()
+        if check_question is not None:
+            question_id = check_question.id
+            ques = check_question.content
+            ans = check_question.answer
+            if question_id in mylist:
+                continue
+            mylist.append(question_id)
+            print(mylist)
+            return {'question': ques, 'answer': ans}
 
 
 if __name__ == '__main__':
+    db.create_all()
+    FileReader.read_file(db, 'static/QA.txt')
     app.run(debug=True)
+
