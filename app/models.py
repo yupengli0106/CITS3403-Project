@@ -35,15 +35,17 @@ class QuestionModel(db.Model):
 class FileReader():
     # read QA.txt file and store questions in database
     def read_file(db,filename):
+        # Prevent duplicate data generation
+        QuestionModel.query.delete()
         with open(filename, 'r') as f:
             content = f.readlines()
         for line in content:
             line = line.strip()
             line = line.split('\t')
-            question = QuestionModel(id=[0], answer=line[1], content=line[2])
+            question = QuestionModel(answer=line[0], content=line[1])
             db.session.add(question)
         try:
             db.session.commit()
-        except:
-            print("---Duplicate Database Created---")
+        except Exception as e:
+            raise e
 
