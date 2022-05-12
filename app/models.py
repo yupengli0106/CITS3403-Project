@@ -7,31 +7,29 @@ from werkzeug.security import generate_password_hash, check_password_hash
 def load_user(user_id):
     return UserModel.query.get(int(user_id))
 
-# user model
+# User Data
 class UserModel(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True)
     hash_password = db.Column(db.String(200), nullable=False)
 
-    # convert password to hash value
-    def encode_password(password):
-        #hash value of password
-        hash_password = generate_password_hash(password)
-        return hash_password
+     # convert password to hash value
+    def encode_password(self, password):
+        self.hash_password = generate_password_hash(password)
 
     # Verify if the hash value of password is equal to the input password
-    def decode_password(hash_password, password):
-        check_password = check_password_hash(hash_password, password)
-        return check_password #True or False
+    def decode_password(self, password):
+        return check_password_hash(self.hash_password, password) #return True or False
 
-# question model
+# Question Data
 class QuestionModel(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text,nullable=False)
     answer = db.Column(db.String(4), nullable=False)
 
+# initialize the database
 class FileReader():
     # read QA.txt file and store questions in database
     def read_file(db,filename):
