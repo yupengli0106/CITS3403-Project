@@ -6,6 +6,7 @@
 	<title>guess who am i</title>
 	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	<style type="text/css">
 		table tr td{
@@ -91,6 +92,10 @@
 			display: inline-block;
 			margin: 10px;
 		}
+		.share_result{
+			color: royalblue;
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
@@ -101,8 +106,9 @@
 			</span>
 			<span class="head_title">History_class</span>
 			<span id="head_right" class="head_right">
-				<button type="button" class="btn btn-default" aria-label="Left Align"> <a href="./login.html"> login </a></button>
-	  				<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="modal" data-target="#game_shows"></span>
+				<!-- <button type="button" class="btn btn-default" aria-label="Left Align"> <a href="./login.html"> login </a></button> -->
+				<button type="button" class="btn btn-default" aria-label="Left Align" id="logout" > <a href="/logout"> logout </a></button>
+	  				<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="modal"data-target="#game_shows"></span>
 	  				<span class="glyphicon glyphicon-align-left" aria-hidden="true" id="static_turn"></span>
 			</span>
 		</div>
@@ -142,7 +148,7 @@
 						</button>
 				</div>
 				<div class="modal-body">
-					Congratulations you answered right！Study hard, improve every day！
+					Congratulations you answered right！Study hard, improve every day！<span class="share_result" id="success_share">share me XD!!!</span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
@@ -160,7 +166,7 @@
 						</button>
 				</div>
 				<div class="modal-body">
-					Please start again, come on！！！！！！！
+					Please start again, come on！！！！！！！<span class="share_result" id="failed_share">share me XD!!!</span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
@@ -223,10 +229,27 @@
 		var theme_turn = false;
 		var day = new Date();
 		var start_time=day.getTime();
-		var played;
-		var wined_count;
-		var streak;
-		var time;
+		var played = 0;
+		var wined_count = 0;
+		var streak = 0;
+		var time = 0;
+
+		function shareGrades(){
+			let dom = document.createElement('input');
+			dom.value = 'played:'+played+' wined_count:'+wined_count+' streak:'+streak+' time:'+time+' '+window.location.href;
+			document.body.appendChild(dom);
+			dom.select();
+			document.execCommand("Copy"); 
+			document.body.removeChild(dom);
+			alert('cpoy success');
+		}
+		$("#success_share").click(function(){
+			shareGrades();
+		});
+
+		$("#failed_share").click(function(){
+			shareGrades();
+		});
 
 		function sendStatic(wined_count,streak){
 			var end_time = day.getTime();
@@ -273,7 +296,6 @@
 		var input_count = 0;
 		$(".char").mouseover(function(){
 			$(this).css({"cursor":"pointer"});
-
 		});
 		$(".char").click(function(){
 			if(answer == true){
@@ -342,6 +364,10 @@
 							}
 							$("#game_success").modal("show");
 							sendStatic(1,row);
+						}
+						if(row_check[try_times-1] == 1){
+							$("#game_failed").modal("show");
+							return;
 						}
 					}
 				}
