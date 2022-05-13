@@ -5,99 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>learn history</title>
 	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../css/game.css"/>
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"></script>
 	<script src="../js/game.js"></script>
-	<style>
-		table tr td{
-			padding: 0px;
-			margin: 0px;
-		}
-		body{
-			background-color: white;
-		}
-		.header{
-			height: 160px;	
-		}
-		.header .head_top{
-			text-align: center;
-			width: 100%;
-			padding: 10px;
-		}
-		.header .head_title{
-			font-family: initial;
-			padding-top: 10px;
-			font-size: 40px;
-		}
-		.header .head_left{
-			float: left;
-		}
-		.header .head_right{
-			float: right;
-		}
-		.header .question{
-			margin: 0 auto;
-			width: 90%;
-			height: 83px;
-			font-size: 23px;
-			text-align: center;
-		}
-		.header .glyphicon{
-			z-index: 6;
-		}
-		.content{
-			height: 370px;
-			padding-top: 40px;
-		}
-		.footer{
-			height: 255px;
-			padding-top: 10px;
-		}
-		#content_table{
-			margin: 0 auto;
-			padding: 0px;
-			border-spacing: 10px;
-			background-color: white;
-			z-index: 6;
-		}
-		.content .content_td{
-			width: 140px;
-			height: 50px;
-			border: 3px solid black;
-			text-align: center;
-			font-size: 30px;
-		}
-		.footer .key_num{
-			margin: 6px auto;
-			width: 399px;
-		}
-		.footer .char{
-			display: inline-block;
-			width: 130px;
-			height: 50px;
-			border: 3px solid pink;
-			box-sizing: border-box;
-			text-align: center;
-			margin-right: 0px;
-			padding: 10px 0px;
-			background-color: pink;
-		}
-		.static_ul{
-			background-color: royalblue;
-			list-style-type: none;
-			text-align: center;
-			padding-left: 0px;
-		}
-		.static_data{
-			display: inline-block;
-			margin: 10px;
-		}
-		.share_result{
-			color: royalblue;
-			cursor: pointer;
-		}
-	</style>
 </head>
 <body>
 	<div class="header">
@@ -115,7 +27,7 @@
 		<p id="question" class="question">When was the first industrial revolution in America,When was the first industrial revolution in,When was the first industrial revolution in,When was the first industrial revolution in?
 		</p>
 	</div>
-	<div class="content"><table id="content_table"></table></div>
+	<div class="content"><table class="content_table" id="content_table"></table></div>
 	<div class="footer">
 		<div class="key_num">
 			<span class="char">7</span>
