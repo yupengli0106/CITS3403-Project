@@ -5,6 +5,7 @@ from sqlalchemy import func
 from models import UserModel, QuestionModel, FileReader, ScoreModel
 mylist = []  # store question id
 
+# ---------------------HTML pages-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/')
 @app.route('/login.html', methods=['GET', 'POST'])
 def index():
@@ -24,6 +25,7 @@ def game():
 def test():
     return render_template('profile.html')
 
+# ---------------------basic functions-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     # clear mylist[] when a new user login
@@ -92,6 +94,7 @@ def get_question():
             return {'question_id':question_id,'question': ques, 'answer': ans}
         return "no more question"
 
+# ---------------------user profile-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/update', methods=['POST', 'GET'])
 @login_required
 # update current user's profile in database
@@ -132,6 +135,7 @@ def delete_user():
     print("delete user successful")
     return {'status': 'success'}
 
+# ---------------------share function-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/statistic', methods=['POST', 'GET'])
 def user_statistic():
     if request.method == 'POST':
@@ -163,6 +167,71 @@ def share():
         return {'user_id':current_user.id, 'username':current_user.name, 'rank':user_rank, 'score':total_score}
     return render_template('share.html')
 
+# ---------------------admin controller-----------------------------------------------------------------------------------------------------------------------------------------------------------
+@app.route('/admin_question_list', methods=['POST', 'GET'])
+# get all question data for admin (id, content, answer)
+def get_questions():
+    questions = QuestionModel.query.all()
+    result=[]
+    if questions is not None:
+        for question in questions:
+            result.append({'id': question.id, 'content': question.content, 'answer': question.answer})
+        return {'question_list': result}
+    return {'status': 'fail'}
+
+@app.route('/admin_get_question/<int:question_id>', methods=['POST', 'GET'])
+# get a question by question id
+def get_question_by_id(question_id):
+    question = QuestionModel.query.filter_by(id=question_id).first()
+    if question is not None:
+        return {'content': question.content, 'answer': question.answer}
+    return {'status': 'fail'}
+
+@app.route('/admin_delete_question/<int:question_id>', methods=['POST', 'GET'])
+# delete a question by question id
+def delete_question(question_id):
+    question = QuestionModel.query.filter_by(id=question_id).first()
+    if question is not None:
+        db.session.delete(question)
+        try:
+            db.session.commit()
+        except Exception as e:
+            raise e
+        return {'status':'success'}
+    return {'status': 'fail'}
+
+@app.route('/admin_add_question', methods=['POST', 'GET'])
+# add a new question
+def add_question():
+    if request.method == 'POST':
+        content = request.form.get('content')
+        answer = request.form.get('answer')
+        question = QuestionModel(content=content, answer=answer)
+        db.session.add(question)
+        try:
+            db.session.commit()
+        except Exception as e:
+            raise e
+        return {'status':'success'}
+    return render_template('game.html')
+
+@app.route('/admin_edit_question/<int:question_id>', methods=['POST', 'GET'])
+# edit a question by question id
+def edit_question(question_id):
+    if request.method == 'POST':
+        question = QuestionModel.query.filter_by(id=question_id).first()
+        question.content = request.form.get('content')
+        question.answer = request.form.get('answer')
+        try:
+            db.session.commit()
+        except Exception as e:
+            raise e
+        return {'status':'success'}
+    return render_template('game.html')
+
+
+
+    
 
 if __name__ == '__main__':
     db.create_all()
