@@ -29,6 +29,13 @@ class QuestionModel(db.Model):
     content = db.Column(db.Text,nullable=False)
     answer = db.Column(db.String(4), nullable=False)
 
+# Score Data
+class ScoreModel(db.Model):
+    __tablename__ = 'scores'
+    user_id = db.Column(db.Integer,  primary_key=True, nullable=False)
+    ques_id = db.Column(db.Integer,  primary_key=True, nullable=False)
+    socre = db.Column(db.Integer, nullable=False)
+
 # initialize the database
 class FileReader():
     # read QA.txt file and store questions in database
