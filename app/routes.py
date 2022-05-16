@@ -2,7 +2,7 @@ from config import app, db
 from flask_login import login_user, logout_user, login_required, current_user
 from flask import render_template, request, flash
 from sqlalchemy import func
-from models import UserModel, QuestionModel, FileReader
+from models import UserModel, QuestionModel, FileReader, ScoreModel
 mylist = []  # store question id
 
 @app.route('/')
@@ -41,9 +41,8 @@ def login():
             login_user(curr_user,remember=request.form.get('remember'))
             print("user id:", curr_user.username, ' login successful')
             return {'status': 'success'}
-        else:
-            print('login failed, username or password is incorrect')
-            return {'status': 'fail'}
+        print('login failed, username or password is incorrect')
+        return {'status': 'fail'}
     return render_template('login.html')
 
 @app.route('/logout', methods=['POST', 'GET'])
@@ -101,6 +100,7 @@ def update_user():
         new_name = request.form.get('username')
         new_pwd = request.form.get('password')
         user=UserModel.query.filter_by(username=new_name).first()
+        # check if the username is already existed (excluding current user's name)
         if user is not None and user.id != current_user.id:
             print("update failed, user name already exists")
             flash('update failed, user name already exists')
@@ -108,7 +108,10 @@ def update_user():
         current_user.username = new_name
         current_user.encode_password(new_pwd)
         print(current_user.username, current_user.hash_password)
-        db.session.commit()
+        try:
+            db.session.commit()
+        except Exception as e:
+            raise e
         logout_user()
         print("update successful")
         return {'status': 'success'}
@@ -129,8 +132,36 @@ def delete_user():
     print("delete user successful")
     return {'status': 'success'}
 
+@app.route('/statistic', methods=['POST', 'GET'])
+def user_statistic():
+    if request.method == 'POST':
+        ques_id = request.form.get('question_id')
+        #check how many times the user entered the answer (0 < streak <= 6)
+        streak = request.form.get('streak')
+        # A new record is added to the database each time the user answers a question correctly
+        user = ScoreModel(user_id=current_user.id, ques_id=ques_id, score=int(6/streak))
+        db.session.add(user)
+        try:
+            db.session.commit()
+        except Exception as e:
+            raise e
+    return render_template('game.html')
 
-
+@app.route('/share', methods=['POST', 'GET'])
+@login_required
+def share():
+    # get the total score of all users and sort by total score
+    rank=db.session.query(ScoreModel.user_id,func.sum(ScoreModel.score)).group_by(ScoreModel.user_id).order_by(func.sum(ScoreModel.score).desc()).all()
+    user_rank=0 #current user's rank
+    total_score=0 #current user's total score
+    if rank is not None:
+        for user in rank:
+            user_rank+=1
+            if user.user_id==current_user.id:
+                total_score=user[1]
+                break
+        return {'user_id':current_user.id, 'username':current_user.name, 'rank':user_rank, 'score':total_score}
+    return render_template('share.html')
 
 
 if __name__ == '__main__':
