@@ -7,15 +7,16 @@
 	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="../css/game.css"/>
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="../js/clipboard.min.js"></script>
 	<script src="../js/game.js"></script>
 </head>
 <body>
 	<div class="header">
 		<div class="head_top">
 			<span id="head_left" class="head_left">
-	  				<span class="glyphicon glyphicon-off" aria-hidden="true" id="theme_turn"></span>
+  				<span class="glyphicon glyphicon-off" aria-hidden="true" id="theme_turn"></span>
+  				<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
 			</span>
 			<span class="head_title">History_class</span>
 			<span id="head_right" class="head_right">
@@ -60,7 +61,11 @@
 						</button>
 				</div>
 				<div class="modal-body">
-					Congratulations you answered right！Study hard, improve every day！<span class="share_result" id="success_share">share me XD!!!</span>
+					<ul class="static_ul">
+						<li class="static_data"><span id="success_static_streak">1</span><br/><span>Max Streak</span></li>
+						<li class="static_data"><span id="success_static_time">2mins</span><br/><span>Time</span></li>
+					</ul>
+					Congratulations you answered right！Study hard, improve every day！
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
@@ -78,7 +83,7 @@
 						</button>
 				</div>
 				<div class="modal-body">
-					Please start again, come on！！！！！！！<span class="share_result" id="failed_share">share me XD!!!</span>
+					Please start again, come on！！！！！！
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
@@ -119,8 +124,6 @@
 				</div>
 				<div class="modal-body">
 					<ul class="static_ul">
-						<li class="static_data"><span id="static_played">1</span><br/><span>Played</span></li>
-						<li class="static_data"><span id="static_win">100%</span><br/><span>Win %</span></li>
 						<li class="static_data"><span id="static_streak">1</span><br/><span>Max Streak</span></li>
 						<li class="static_data"><span id="static_time">2mins</span><br/><span>Time</span></li>
 					</ul>

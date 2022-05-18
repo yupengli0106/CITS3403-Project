@@ -4,42 +4,57 @@ $(document).ready(function(){
 	var arr = [1,4,5,6];
 	var theme_turn = false;
 	var day = new Date();
-	var start_time=day.getTime();
-	var played = 0;
-	var wined_count = 0;
+	var start_time= Date.parse(new Date());
 	var streak = 0;
 	var time = 0;
-
-	function shareGrades(){
-		let dom = document.createElement('input');
-		dom.value = 'played:'+played+' wined_count:'+wined_count+' streak:'+streak+' time:'+time+' '+window.location.href;
-		document.body.appendChild(dom);
-		dom.select();
-		document.execCommand("Copy"); 
-		document.body.removeChild(dom);
-		alert('cpoy success');
-	}
-	$("#success_share").click(function(){
-		shareGrades();
+	var username = "";
+	var rank = 0;
+	var score = 0;
+   
+	var clipboard = new ClipboardJS('.glyphicon-share-alt',{
+		text: function(trigger){
+			return 'username:'+username+' rank:'+rank+' score:'+score+' '+window.location.href;
+		}
 	});
 
-	$("#failed_share").click(function(){
-		shareGrades();
+	clipboard.on('success', function(e){
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		alert("copy success");
+	});
+	clipboard.on('error', function(e){
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
 	});
 
-	function sendStatic(wined_count,streak){
-		var end_time = day.getTime();
+	function sendStatic(streak){
 		$.ajax({
-			url: '/static',
+			url: '/statistic',
 			type: 'post',
 			dataType: 'json',
-			data:{"question_id": question_id,  "question_time": (end_time - start_time)/60, "played": played +1,  "wined_count" : wined_count, "streak" : streak},
+			data:{"question_id": question_id,"streak" : streak},
 			success: function(problem, textStatus, xhr) {
 			},
 			error: function(xhr, textStatus, errorThrown) {
 			}
 		});	
 	} 
+	$.ajax({
+		url: '/share',
+		type: 'post',
+		dataType: 'json',
+		data:{},
+		success: function(data, textStatus, xhr) {
+			username = data.username;
+			rank = data.rank;
+			score = data.score;
+		},
+		error: function(xhr, textStatus, errorThrown) {
+		}
+	});	
+
 	$.ajax({
 		url: '/questions',
 		type: 'GET',
@@ -48,10 +63,6 @@ $(document).ready(function(){
 			$("#question").text(data.question);
 			question_id = data.question_id;
 			arr = data.answer.split("");
-			played = data.played;
-			wined_count = data.wined_count;
-			streak = data.streak;
-			time = data.time;
 		},
 		error: function(xhr, textStatus, errorThrown) {
 		}
@@ -130,16 +141,19 @@ $(document).ready(function(){
 							}
 						}
 					}
-					if(row == try_times-1 && right_answer < char_num ){
-						sendStatic(0,0);
-					}
+					var end_time = Date.parse(new Date());
+					time = Math.floor((end_time - start_time)/1000);
+					var showTime = time + "s";
 					if(right_answer >= char_num){
 						answer = true;
 						for(var j = input_count; j< try_times*char_num; j++){
 							$("#box_"+j).css({"background-color":"grey"});
 						}
+						streak = row + 1;
+						$("#success_static_time").html(showTime);
+						$("#success_static_streak").html(streak);
 						$("#game_success").modal("show");
-						sendStatic(1,row);
+						sendStatic(streak);
 					}
 					if(row_check[try_times-1] == 1){
 						$("#game_failed").modal("show");
@@ -173,10 +187,8 @@ $(document).ready(function(){
 		}
 	});
 	$("#static_turn").click(function(){
-		$("#static_played").text(played);
-		$("#static_win").text((wined_count/played * 100) + "%");
 		$("#static_streak").text(streak);
-		$("#static_time").text(time);
+		$("#static_time").text(time + "s");
 		$('#statistics').modal('show');
 	});
 });
