@@ -5,87 +5,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>admin_puzzle</title>
 	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../css/game.css"/>
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"></script>
 	<script src="../js/admin_index.js"></script>
-	<style>
-		.btn-default{
-			color: royalblue !important;
-		}
-		.header{
-			height: 65px;	
-		}
-		.header .head_top{
-			text-align: center;
-			width: 100%;
-			padding: 10px;
-		}
-		.header .head_title{
-			font-family: initial;
-			padding-top: 10px;
-			font-size: 40px;
-		}
-		.header .head_left{
-			float: left;
-		}
-		.header .head_right{
-			float: right;
-		}
-		.header .glyphicon{
-			z-index: 6;
-		}
-		.content{
-			height: 600px;
-		}
-		.content .content_header{
-			width: 47%;
-			margin: 0 auto;
-		}
-		.content .search_content{
-			width: 82%;
-			border: 1px solid black;
-		}
-		.content .ul_question{
-			list-style-type: none;
-			width: 50%;
-			margin: 0 auto;
-			padding: 0px;
-			overflow: scroll;
-			height: 550px;
-		}
-		.content .li_question{
-			margin: 5px;
-   		 	padding: 17px;
-		}
-		.content .li_right{
-			float: right;
-		}
-		/*.content .btn{
-			border: none;
-
-		}*/
-		.footer{
-			height: 255px;
-			padding-top: 10px;
-		}
-	</style>
 </head>
 <body>
-	<div class="header">
+	<div class="admin-header">
 		<div class="head_top">
 			<span class="head_title">admin_control</span>
 			<span id="head_right" class="head_right">
-				<a href="/logout" class="btn btn-default" aria-label="Left Align" id="logout"> logout </a>
+				<a href="/logout" class="btn btn-default admin-btn" aria-label="Left Align" id="logout"> logout </a>
 			</span>
 		</div>
 	</div>
-	<div class="content">
+	<div class="admin-content">
 		<div class="content_header"> 
 			<form class="form-horizontal">
 				<div class="form-group">
-						<input type="text" class="btn btn-default search_content" id="search_content" placeholder="search_content">
-						<input type="submit" class="btn btn-default" id="submit_search" value="search">
-						<button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#modal_add_question"> add </button>
+						<input type="text" class="btn btn-defasult admin-btn search_content" id="search_content" placeholder="search_content">
+						<input type="submit" class="btn btn-default admin-btn" id="submit_search" value="search">
+						<button type="button" class="btn btn-default admin-btn" aria-label="Left Align" data-toggle="modal" data-target="#modal_add_question"> add </button>
 				</div>
 			</form>
 		</div>
@@ -97,53 +37,12 @@
 					<span>answer</span>
 				</span> 
 				<span class="li_right">
-					<button  class="btn btn-default">Edit</button> <button  class="btn btn-default">Delete</button>
+					<button  class="btn btn-default admin-btn">Edit</button> <button  class="btn btn-default admin-btn">Delete</button>
 				</span>
 			</li>
-			<li class="li_question">
-				<div>When was the first industrial revolution in America,When was the first industrial revolution in,When was the first industrial revolution in,When was the first industrial revolution in?
-				</div>
-				<span class="li_left">
-					<button  class="btn btn-default">answer</button>
-				</span> 
-				<span class="li_right">
-					<button  class="btn btn-default">Edit</button> <button class="btn btn-default ">Delete</button>
-				</span>
-			</li>
-			<li class="li_question">
-				<div>When was the first industrial revolution in America,When was the first industrial revolution in,When was the first industrial revolution in,When was the first industrial revolution in?
-				</div>
-				<span class="li_left">
-					<button  class="btn btn-default">answer</button>
-				</span> 
-				<span class="li_right">
-					<button  class="btn btn-default">Edit</button> <button  class="btn btn-default">Delete</button>
-				</span>
-			</li>
-			<li class="li_question">
-				<div>When was the first industrial revolution in America,When was the first industrial revolution in,When was the first industrial revolution in,When was the first industrial revolution in?
-				</div>
-				<span class="li_left">
-					<button  class="btn btn-default">answer</button>
-				</span> 
-				<span class="li_right">
-					<button  class="btn btn-default">Edit</button> <button  class="btn btn-default">Delete</button>
-				</span>
-			</li>
-			<li class="li_question">
-				<div>When was the first industrial revolution in America,When was the first industrial revolution in,When was the first industrial revolution in,When was the first industrial revolution in?
-				</div>
-				<span class="li_left">
-					<button  class="btn btn-default">answer</button>
-				</span> 
-				<span class="li_right">
-					<button  class="btn btn-default">Edit</button> <button  class="btn btn-default">Delete</button>
-				</span>
-			</li>
-
 		</ul>
 	</div>
-	<div class="footer">
+	<div class="admin-footer">
 	</div>
 	<div class="modal fade" id="modal_add_question" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog">
@@ -174,7 +73,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
-					<button id="submit_add_question" type="submit" class="btn btn-default">submit</button>
+					<button id="submit_add_question" type="submit" class="btn btn-default admin-btn">submit</button>
 				</div>
 			</div>
 		</div>
@@ -209,7 +108,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
-					<button id="submit_edit_question" type="submit" class="btn btn-default">submit</button>
+					<button id="submit_edit_question" type="submit" class="btn btn-default admin-btn">submit</button>
 				</div>
 			</div>
 		</div>
