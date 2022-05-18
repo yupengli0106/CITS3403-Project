@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$.ajax({
-		url: '/question_list',
+		url: '/admin_question_list',
 		type: 'GET',
 		dataType: 'json',
 		data: {},
@@ -26,14 +26,14 @@ $(document).ready(function(){
 	});
 	function getQuestion(id){
 		$.ajax({
-			url: '/question_get',
+			url: '/admin_get_question/id',
 			type: 'GET',
 			dataType: 'json',
 			data: {'id': id},
 			success: function(data, textStatus, xhr) {
 				if(data.status == 'success'){
-					$("#question_id").val(data.id);
-					$("#edit_question").val(data.question);
+					$("#question_id").val(id);
+					$("#edit_question").val(data.content);
 					$("#edit_answer").val(data.answer);
 					$("#modal_edit_question").modal("show");
 				}
@@ -131,7 +131,7 @@ $(document).ready(function(){
 			return;
 		}
 		$.ajax({
-			url: '/question_list',
+			url: '/admin_search_keyword',
 			type: 'GET',
 			dataType: 'json',
 			data: {'content': content},
