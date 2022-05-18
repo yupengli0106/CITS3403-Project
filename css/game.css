@@ -85,3 +85,77 @@ body{
 	color: royalblue;
 	cursor: pointer;
 }
+.login_box{
+	width: 350px;
+	height: 200px;
+	margin: 200px auto;
+}
+.form-control{
+	width: 170px;
+	margin-left: 20px;
+}
+.login-btn{
+	width: 65px;
+	margin-right: 30px;
+}
+.admin-btn{
+	color: royalblue !important;
+}
+.admin-header{
+	height: 65px;	
+}
+.admin-header .head_top{
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+}
+.admin-header .head_title{
+	font-family: initial;
+	padding-top: 10px;
+	font-size: 40px;
+}
+.admin-header .head_left{
+	float: left;
+}
+.admin-header .head_right{
+	float: right;
+}
+.admin-header .glyphicon{
+	z-index: 6;
+}
+.admin-content{
+	height: 600px;
+}
+.admin-content .content_header{
+	width: 47%;
+	margin: 0 auto;
+}
+.admin-content .search_content{
+	width: 82%;
+	border: 1px solid black;
+}
+.admin-content .ul_question{
+	list-style-type: none;
+	width: 50%;
+	margin: 0 auto;
+	padding: 0px;
+	overflow: scroll;
+	height: 550px;
+}
+.admin-content .li_question{
+	margin: 5px;
+	 	padding: 17px;
+}
+.admin-content .li_right{
+	float: right;
+}
+/*.content .btn{
+	border: none;
+
+}*/
+.admin-footer{
+	height: 255px;
+	padding-top: 10px;
+}
+
+
