@@ -178,6 +178,7 @@ $(document).ready(function(){
 			$(".question").css({"color": "blue"});
 			$(".char").css({"color": "blue"});
 			$(".glyphicon").css({"color": "blue"});
+			$("#logout").css({"background-color": "black"});
 		}else{
 			theme_turn = false;
 			for(var j = input_count; j< try_times*char_num; j++){
