@@ -48,7 +48,7 @@ $(document).ready(function(){
 			return;
 		}
 		$.ajax({
-			url: '/question_delete',
+			url: '/admin_delete_question/id',
 			type: 'GET',
 			dataType: 'json',
 			data: {'id': id},
@@ -76,7 +76,7 @@ $(document).ready(function(){
 			return;
 		}
 		$.ajax({
-			url: '/question_add',
+			url: '/admin_add_question',
 			type: 'POST',
 			dataType: 'json',
 			data: {'question': question, 'answer': answer},
@@ -107,7 +107,7 @@ $(document).ready(function(){
 			return;
 		}
 		$.ajax({
-			url: '/question_edit',
+			url: '/admin_edit_question/id',
 			type: 'POST',
 			dataType: 'json',
 			data: {'id':id,'question': question, 'answer': answer},

@@ -10,6 +10,7 @@ $(document).ready(function(){
 	var username = "";
 	var rank = 0;
 	var score = 0;
+	getShareData();
    
 	var clipboard = new ClipboardJS('.glyphicon-share-alt',{
 		text: function(trigger){
@@ -36,24 +37,28 @@ $(document).ready(function(){
 			dataType: 'json',
 			data:{"question_id": question_id,"streak" : streak},
 			success: function(problem, textStatus, xhr) {
+				getShareData();
 			},
 			error: function(xhr, textStatus, errorThrown) {
 			}
 		});	
 	} 
-	$.ajax({
-		url: '/share',
-		type: 'post',
-		dataType: 'json',
-		data:{},
-		success: function(data, textStatus, xhr) {
-			username = data.username;
-			rank = data.rank;
-			score = data.score;
-		},
-		error: function(xhr, textStatus, errorThrown) {
-		}
-	});	
+	
+    function getShareData(){
+		$.ajax({
+			url: '/share',
+			type: 'post',
+			dataType: 'json',
+			data:{},
+			success: function(data, textStatus, xhr) {
+				username = data.username;
+				rank = data.rank;
+				score = data.score;
+			},
+			error: function(xhr, textStatus, errorThrown) {
+			}
+		});
+	}	
 
 	$.ajax({
 		url: '/questions',
