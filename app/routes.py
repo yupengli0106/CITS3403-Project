@@ -1,8 +1,8 @@
-from config import app, db
+from app import app, db
 from flask_login import login_user, logout_user, login_required, current_user
 from flask import render_template, request, flash
 from sqlalchemy import func
-from models import UserModel, QuestionModel, FileReader, ScoreModel
+from app.models import UserModel, QuestionModel, ScoreModel
 
 # ---------------------HTML pages-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/')
@@ -41,11 +41,10 @@ def login():
         pwd = request.form.get('password')
         user=UserModel.query.filter_by(username=name).first()#username is unique
         # check if the user existed and the password is correct
-        if user is not None and user.decode_password(pwd):
+        if user is not None and user.decode_password(pwd) and not user.admin:
             curr_user = UserModel()
             curr_user.id = user.id
             curr_user.username = user.username
-            # create user 'session'
             login_user(curr_user,remember=request.form.get('remember'))
             print("user id:", curr_user.username, ' login successful')
             return {'status': 'success'}
@@ -59,7 +58,7 @@ def admin_login():
         name = request.form.get('username')
         pwd = request.form.get('password')
         user = UserModel.query.filter_by(username=name).first()
-        if user is not None and user.decode_password(pwd):
+        if user is not None and user.decode_password(pwd) and user.admin:
             curr_user = UserModel()
             curr_user.id = user.id
             curr_user.username = user.username
@@ -72,7 +71,6 @@ def admin_login():
 @app.route('/logout', methods=['POST', 'GET'])
 @login_required
 def logout():
-    # clear session
     logout_user()
     return render_template('login.html')
 
@@ -186,11 +184,11 @@ def user_statistic():
 @login_required
 def share():
     # get the total score of all users and sort by total score
-    rank=db.session.query(ScoreModel.user_id,func.sum(ScoreModel.score)).group_by(ScoreModel.user_id).order_by(func.sum(ScoreModel.score).desc()).all()
+    user_score=db.session.query(ScoreModel.user_id,func.sum(ScoreModel.score)).group_by(ScoreModel.user_id).order_by(func.sum(ScoreModel.score).desc()).all()
     user_rank=0 #current user's rank
     total_score=0 #current user's total score
-    if rank is not None:
-        for user in rank:
+    if user_score is not None:
+        for user in user_score:
             user_rank+=1
             if user.user_id==current_user.id:
                 total_score=user[1]
@@ -273,13 +271,3 @@ def edit_question(question_id):
             raise e
         return {'status':'success'}
     return render_template('game.html')
-
-
-
-    
-
-if __name__ == '__main__':
-    db.create_all()
-    FileReader.read_file(db, 'static/QA.txt')
-    app.run(debug=True)
-

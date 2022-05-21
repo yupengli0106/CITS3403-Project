@@ -1,8 +1,8 @@
-from config import db,login_manager
+from app import db,login_manager
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-#Get the user object and store it in the session
+#Get the user object and store as current_user through flask_login
 @login_manager.user_loader
 def load_user(user_id):
     return UserModel.query.get(int(user_id))
@@ -13,6 +13,7 @@ class UserModel(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True)
     hash_password = db.Column(db.String(200), nullable=False)
+    admin = db.Column(db.Boolean, default=False)
 
      # convert password to hash value
     def encode_password(self, password):
