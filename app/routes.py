@@ -1,6 +1,6 @@
 from app import app, db
 from flask_login import login_user, logout_user, login_required, current_user
-from flask import render_template, request, flash
+from flask import render_template, request, flash, redirect
 from sqlalchemy import func
 from app.models import UserModel, QuestionModel, ScoreModel
 
@@ -72,7 +72,7 @@ def admin_login():
 @login_required
 def logout():
     logout_user()
-    return render_template('login.html')
+    return redirect('/login.html')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -193,7 +193,7 @@ def share():
             if user.user_id==current_user.id:
                 total_score=user[1]
                 break
-        return {'user_id':current_user.id, 'username':current_user.name, 'rank':user_rank, 'score':total_score}
+        return {'user_id':current_user.id, 'username':current_user.name, 'ranking':user_rank, 'score':total_score}
     return render_template('share.html')
 
 # ---------------------admin controller-----------------------------------------------------------------------------------------------------------------------------------------------------------
