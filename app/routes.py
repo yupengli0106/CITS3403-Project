@@ -184,7 +184,6 @@ def share():
         return {'user_id':current_user.id, 'username':current_user.username, 'ranking':user_rank, 'score':total_score}
     return {'user_id':current_user.id, 'username':current_user.username, 'ranking':user_rank, 'score':total_score}
     
-
 # ---------------------admin controller-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/admin_question_list', methods=['POST', 'GET'])
 @login_required
@@ -250,7 +249,7 @@ def add_question():
         except Exception as e:
             raise e
         return {'status':'success'}
-    return render_template('game.html')
+    return render_template('admin_index.html')
 
 @app.route('/admin_edit_question/<int:question_id>', methods=['POST', 'GET'])
 @login_required
@@ -265,4 +264,4 @@ def edit_question(question_id):
         except Exception as e:
             raise e
         return {'status':'success'}
-    return render_template('game.html')
+    return render_template('admin_index.html')
