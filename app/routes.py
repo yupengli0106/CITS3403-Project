@@ -1,6 +1,6 @@
 from app import app, db
 from flask_login import login_user, logout_user, login_required, current_user
-from flask import render_template, request, flash, redirect
+from flask import render_template, request, redirect
 from sqlalchemy import func
 from app.models import UserModel, QuestionModel, ScoreModel
 
@@ -46,9 +46,7 @@ def login():
             curr_user.id = user.id
             curr_user.username = user.username
             login_user(curr_user,remember=request.form.get('remember'))
-            print("user id:", curr_user.username, ' login successful')
             return {'status': 'success'}
-        print('login failed, username or password is incorrect')
         return {'status': 'fail'}
     return render_template('login.html')
 
@@ -64,7 +62,6 @@ def admin_login():
             curr_user.username = user.username
             login_user(curr_user, remember=request.form.get('remember'))
             return {'status': 'success'}
-        print('login failed, username or password is incorrect')
         return {'status': 'fail'}
     return render_template('admin_login.html')
 
@@ -72,7 +69,7 @@ def admin_login():
 @login_required
 def logout():
     logout_user()
-    return redirect('/login.html')
+    return redirect('/')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -82,19 +79,15 @@ def register():
         user = UserModel.query.filter_by(username=name).first()#username is unique
         # check if the username is already in the database
         if user is not None:
-            print('username already exists')
-            flash('Username already exists')
             return {'status': 'fail'}
         new_user = UserModel(username=name)
         # convert new user's password to hash value and store it in the database
         new_user.encode_password(pwd)
-        print(name, new_user.hash_password)
         db.session.add(new_user)
         try:
             db.session.commit()
         except Exception as e:
             raise e
-        print('register successful')
         return {'status': 'success'}
     return render_template('register.html')
 
@@ -128,18 +121,14 @@ def update_user():
         user=UserModel.query.filter_by(username=new_name).first()
         # check if the username is already existed (excluding current user's name)
         if user is not None and user.id != current_user.id:
-            print("update failed, user name already exists")
-            flash('update failed, user name already exists')
             return {'status': 'fail'}
         current_user.username = new_name
         current_user.encode_password(new_pwd)
-        print(current_user.username, current_user.hash_password)
         try:
             db.session.commit()
         except Exception as e:
             raise e
         logout_user()
-        print("update successful")
         return {'status': 'success'}
     return render_template('game.html')
 
@@ -158,14 +147,13 @@ def delete_user():
     try:
         db.session.commit()
     except Exception as e:
-        print("delete user failed")
         raise e
     logout_user()
-    print("delete user successful")
     return {'status': 'success'}
 
 # ---------------------share function-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/statistic', methods=['POST', 'GET'])
+@login_required
 def user_statistic():
     if request.method == 'POST':
         ques_id = request.form.get('question_id')
@@ -198,6 +186,7 @@ def share():
 
 # ---------------------admin controller-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/admin_question_list', methods=['POST', 'GET'])
+@login_required
 # get all question data for admin (id, content, answer)
 def get_questions():
     questions = QuestionModel.query.all()
@@ -209,6 +198,7 @@ def get_questions():
     return {'status': 'fail'}
 
 @app.route('/admin_search_keyword', methods=['POST', 'GET'])
+@login_required
 # search question by keywords in question content
 def search_by_keywords():
     if request.method == 'POST':
@@ -223,6 +213,7 @@ def search_by_keywords():
     return render_template('admin_index.html')
 
 @app.route('/admin_get_question/<int:question_id>', methods=['POST', 'GET'])
+@login_required
 # get a question by question id
 def get_question_by_id(question_id):
     question = QuestionModel.query.filter_by(id=question_id).first()
@@ -231,6 +222,7 @@ def get_question_by_id(question_id):
     return {'status': 'fail'}
 
 @app.route('/admin_delete_question/<int:question_id>', methods=['POST', 'GET'])
+@login_required
 # delete a question by question id
 def delete_question(question_id):
     question = QuestionModel.query.filter_by(id=question_id).first()
@@ -244,6 +236,7 @@ def delete_question(question_id):
     return {'status': 'fail'}
 
 @app.route('/admin_add_question', methods=['POST', 'GET'])
+@login_required
 # add a new question
 def add_question():
     if request.method == 'POST':
@@ -259,6 +252,7 @@ def add_question():
     return render_template('game.html')
 
 @app.route('/admin_edit_question/<int:question_id>', methods=['POST', 'GET'])
+@login_required
 # edit a question by question id
 def edit_question(question_id):
     if request.method == 'POST':
