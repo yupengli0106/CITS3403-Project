@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$('#game_shows').modal('show');
 	var question_id = 0;
-	var arr = [1,4,5,6];
+	var arr = ['1','4','5','6'];
 	var theme_turn = false;
 	var day = new Date();
 	var start_time= Date.parse(new Date());
@@ -139,7 +139,7 @@ $(document).ready(function(){
 							$("#box_"+i).css({"background-color": "gold"});
 							right_answer++;
 						}else{
-							if(arr.includes(parseInt($("#box_"+i).text()))){
+							if(arr.includes($("#box_"+i).text())){
 								$("#box_"+i).css({"background-color": "green"});
 							}else{
 								$("#box_"+i).css({"background-color": "red"});
