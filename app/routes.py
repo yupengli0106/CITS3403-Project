@@ -160,7 +160,7 @@ def user_statistic():
         #check how many times the user entered the answer (0 < streak <= 6)
         streak = request.form.get('streak')
         # A new record is added to the database each time the user answers a question correctly
-        user = ScoreModel(user_id=current_user.id, ques_id=ques_id, score=int(6/streak))
+        user = ScoreModel(user_id=current_user.id, ques_id=ques_id, score=int(6/int(streak)))
         db.session.add(user)
         try:
             db.session.commit()
