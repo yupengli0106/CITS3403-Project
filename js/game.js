@@ -8,13 +8,13 @@ $(document).ready(function(){
 	var streak = 0;
 	var time = 0;
 	var username = "";
-	var rank = 0;
+	var ranking = 0;
 	var score = 0;
 	getShareData();
    
 	var clipboard = new ClipboardJS('.glyphicon-share-alt',{
 		text: function(trigger){
-			return 'username:'+username+' rank:'+rank+' score:'+score+' '+window.location.href;
+			return 'username:'+username+' rank:'+ranking+' score:'+score+' '+window.location.href;
 		}
 	});
 
@@ -52,7 +52,7 @@ $(document).ready(function(){
 			data:{},
 			success: function(data, textStatus, xhr) {
 				username = data.username;
-				rank = data.rank;
+				ranking = data.ranking;
 				score = data.score;
 			},
 			error: function(xhr, textStatus, errorThrown) {
@@ -64,10 +64,12 @@ $(document).ready(function(){
 		url: '/questions',
 		type: 'GET',
 		dataType: 'json',
-		success: function(data, textStatus, xhr) {
-			$("#question").text(data.question);
-			question_id = data.question_id;
-			arr = data.answer.split("");
+		success: function(data, textStatus, xhr){
+			if(!data.hasOwnProperty('status')){
+				$("#question").text(data.question);
+				question_id = data.question_id;
+				arr = data.answer.split("");
+			}
 		},
 		error: function(xhr, textStatus, errorThrown) {
 		}
@@ -178,7 +180,6 @@ $(document).ready(function(){
 			$(".question").css({"color": "blue"});
 			$(".char").css({"color": "blue"});
 			$(".glyphicon").css({"color": "blue"});
-			$("#logout").css({"background-color": "black"});
 		}else{
 			theme_turn = false;
 			for(var j = input_count; j< try_times*char_num; j++){
