@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>learn history</title>
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/static/css/game.css"/>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/js/clipboard.min.js"></script>
+	<script src="/static/js/game.js"></script>
+</head>
+<body>
+	<div class="header">
+		<div class="head_top">
+			<span id="head_left" class="head_left">
+  				<span class="glyphicon glyphicon-adjust" aria-hidden="true" id="theme_turn"></span>
+  				<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+			</span>
+			<span class="head_title">Let's Go History！</span>
+			<span id="head_right" class="head_right">
+				<a href="/logout"  aria-label="Left Align" id="logout"> logout </a>
+  				<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="modal" data-target="#game_shows"></span>
+  				<span class="glyphicon glyphicon-align-left" aria-hidden="true" id="static_turn"></span>
+			</span>
+		</div>
+		<p id="question" class="question">When was the first industrial revolution in America,When was the first industrial revolution in,When was the first industrial revolution in,When was the first industrial revolution in?
+		</p>
+	</div>
+	<div class="content"><table class="content_table" id="content_table"></table></div>
+	<div class="footer">
+		<div class="key_num">
+			<span class="char">7</span>
+			<span class="char">8</span>
+			<span class="char">9</span>
+		</div>
+		<div class="key_num">
+			<span class="char">4</span>
+			<span class="char">5</span>
+			<span class="char">6</span>
+		</div>
+		<div class="key_num">
+			<span class="char">3</span>
+			<span class="char">2</span>
+			<span class="char">1</span>
+		</div>
+		<div class="key_num">
+			<span class="char">ENTER</span>
+			<span class="char">0</span>
+			<span class="char">DELETE</span>
+		</div>
+	</div>
+	<div class="modal fade" id="game_success" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Success</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<ul class="static_ul">
+						<li class="static_data"><span id="success_static_streak">1</span><br/><span>Max Streak</span></li>
+						<li class="static_data"><span id="success_static_time">2mins</span><br/><span>Time</span></li>
+					</ul>
+					Congratulations you answered right！Study hard, improve every day！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<div class="modal fade" id="game_failed" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">failed</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					Please start again, come on！！！！！！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Try it next time</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.reload()">Start a new one</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<div class="modal fade" id="game_shows" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">game_shows</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<p>Game description:</p>
+					<p>1. Enter the year of the event according to the topic</p>
+					<p>2. With the right position and the right number, the grid turns gold. It's the right number but it's in the wrong place and the grid will turn green. With the wrong number and the wrong position, the grid will turn red.</p>
+					<p>3. There are only six chances, and six wrong answers mean failure</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="statistics" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">STATISTICS</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<ul class="static_ul">
+						<li class="static_data"><span id="static_streak">1</span><br/><span>Max Streak</span></li>
+						<li class="static_data"><span id="static_time">2mins</span><br/><span>Time</span></li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
+				</div>
+			</div>
+		</div>
+	</div>  
+</body>
+</html>
