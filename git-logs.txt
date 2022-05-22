@@ -1,0 +1,456 @@
+commit 694ecf8f85b23b7e7d2ffcc199464aba2cca4fe8
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 22:29:28 2022 +0800
+
+    bug fixed: convert str to int then do the calculation
+
+commit 81b1f4f88fb6453022d55836b69aa36b70c0dec5
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 22:12:20 2022 +0800
+
+    add some more comments
+
+commit e4540da643b0c658b6197991e47c8bfe6b9d1166
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 22:06:05 2022 +0800
+
+    update README
+
+commit 2a4dc0f8d51bb3dd6d2ec5449e4ac37656498c63
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 21:50:31 2022 +0800
+
+    upload requirements.txt
+
+commit 94b94b182c8933d5df6f808e12d78cdb52841b54
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 21:06:39 2022 +0800
+
+    update game description
+
+commit d4f5fa82189c84a6433e03c71502f25c5e3b7a28
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 20:55:43 2022 +0800
+
+    fixed variable name error
+
+commit a05341758dd6e933ddc4632c4aaf7a716c72b1d2
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 20:02:31 2022 +0800
+
+    remove all print()
+
+commit 97442690067528210c7ce676d42017572d5c145c
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 19:38:20 2022 +0800
+
+    update README
+
+commit 39d540a45e9fde4516cbdaf9c2ffa4751eb3bdb4
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 19:11:44 2022 +0800
+
+    update game page & user profile page
+
+commit 3bd3afd4cc7631599ef52a8bff67ce842feba1e1
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 19:01:08 2022 +0800
+
+    update README.md
+
+commit d6373c5dace4689a1e2f72725a79615aba4587fa
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 18:17:06 2022 +0800
+
+    restructure project
+
+commit b97516f28b6c6e2aaacf79a18dd35f45c763e3df
+Merge: d003ecc e603bbe
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 18:12:08 2022 +0800
+
+    Merge branch 'melvin'
+
+commit e603bbeae524f4ff87b5793b5bbaa6af4848249c
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sun May 22 18:03:31 2022 +0800
+
+    Front end tes
+
+commit d003eccb23cefe58bc9baf78761c70f33993f741
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 17:55:32 2022 +0800
+
+    update share function
+
+commit 45d90b6e5d5926338db4b116d5e9ee6f7cf208d5
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sun May 22 16:45:29 2022 +0800
+
+    Modify the reference path of static resources
+
+commit 25e42c19df3d2a034969e5f7da378a245ce628f9
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sun May 22 16:35:18 2022 +0800
+
+    update Interface parameters for connecting the front end to the back end
+
+commit 4630999263faaa59523ad318bd620b860a00e239
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sun May 22 16:32:39 2022 +0800
+
+    update Interface parameters for connecting the front end to the back end
+
+commit fe60400b91f50d4f0ad4f2dd5c680d4543b7e7e0
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sun May 22 16:18:57 2022 +0800
+
+    change color
+
+commit d84cb63dbc19b055e18f756287666db01ce96119
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 15:14:07 2022 +0800
+
+    bug fixed: when the user finished all the questions
+
+commit a0f83576a8634019178e218c8c66be0ee0b3f924
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 13:40:04 2022 +0800
+
+    unit tests added
+
+commit 1963c7e33de1f50dd8b12ff60ea7159d1b4c7b34
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 02:17:20 2022 +0800
+
+    using flask_migrate and restructure project
+
+commit 55047f68fac8ee167e05fd9379a979530578d00c
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun May 22 02:02:24 2022 +0800
+
+    add admin account
+
+commit 5268e7d7556595e15c46c3bdf8cbbf94401c5957
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sat May 21 22:58:35 2022 +0800
+
+    The logout button was adjusted
+
+commit eec9f45ecb73d1dc788b2aea37a220e34e429711
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sat May 21 22:52:02 2022 +0800
+
+    Update game.html
+
+commit 7ada8985dfff71d45d27a44619cdf63c2a6271d9
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sat May 21 22:49:35 2022 +0800
+
+    Updated the game rules
+
+commit 98abb73e4d716b3b957dbbf40ead21cd67a578c3
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sat May 21 22:31:09 2022 +0800
+
+    Add a <a> for admin jump to admin_login.html
+
+commit 46c5bc793bce98839fddf074047da54c822be616
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Sat May 21 15:24:45 2022 +0800
+
+    Update and modify content
+
+commit 98e35fbc10a3565ebede1d6da9692de9e8c9c04f
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 18 15:47:22 2022 +0800
+
+    update admin_index.js of url
+
+commit e85b70c48cdf96b3716b0ff0896413e80667834b
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 18 15:22:33 2022 +0800
+
+    The sharing feature has been updated
+
+commit ed80d9ae7d76235a8efc20537cd473aa04776406
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 18 15:22:09 2022 +0800
+
+    Move the CSS for each file to game.css
+
+commit 3acfa3073a586e12770f650e25606e31224c7fc7
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 18 15:21:27 2022 +0800
+
+    Create clipboard.min.js
+
+commit 2987a6de5d8bb8aa1dd6819a07a0aed0c70c9f18
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 18 15:21:08 2022 +0800
+
+    Move the CSS for each file to game.css
+
+commit 45ca90fdb1992d385fa6a5ca22d03ff500de0574
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Wed May 18 14:44:52 2022 +0800
+
+    add the admin to search question by keywords function & bug fixed that user get duplicate questions
+
+commit 952165fa04c30af4a0b0bdafbd7b95582aaf0ee5
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Mon May 16 22:55:48 2022 +0800
+
+    add admin control function
+
+commit ecc1dc89d3753645193ff2334acf93b08e07de46
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Mon May 16 20:53:33 2022 +0800
+
+    add user statistic and share function
+
+commit ad0e40adc69ac5f43197ed9a48ad6f85a823ee2e
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Mon May 16 20:46:14 2022 +0800
+
+    add user scores model
+
+commit 50a4e798cb47e6f567d4af2c01041c2e67872bde
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Fri May 13 19:49:39 2022 +0800
+
+    Separate css into separate file game.css
+
+commit a680de4b83c3fd42c6b86a9dfac393beac6efc5a
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Fri May 13 19:44:31 2022 +0800
+
+    Separate JS into separate file game.js
+
+commit 9c7ba78d71375fe656ea7f93f3e90e5ea3d87779
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Fri May 13 19:37:39 2022 +0800
+
+    Separate JS into separate file admin_index.js
+
+commit 2fd4a6abfeb6282eeb491f71ed84963690c191e3
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Fri May 13 19:14:50 2022 +0800
+
+    Separate JS into separate file admin_login.js
+
+commit e12fb2573b4441e2a1b94e5029b7cc4f0f213d96
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Fri May 13 19:09:17 2022 +0800
+
+    Separate JS into separate file register.js
+
+commit f9446bee335e725f4fc17e5da81ca3c5e452b9a9
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Fri May 13 19:04:27 2022 +0800
+
+    Separate JS into separate files
+
+commit 1469eda940145afa62aadf31407be4c1eac48430
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Fri May 13 18:43:08 2022 +0800
+
+    Added sharing function
+
+commit 47bae62a67cf9684ff91d35222085a7f8d24c79b
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Thu May 12 21:19:43 2022 +0800
+
+    add admin_index.html
+
+commit 2bfb1c8228258b28b0d8321619e9c71b87381682
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Thu May 12 21:19:23 2022 +0800
+
+    add adim_login.html
+
+commit 5982b8df8deebe60f093917277dfbea91d9e72c7
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Thu May 12 14:55:11 2022 +0800
+
+    update user password encryption method
+
+commit f8160b3278aa74e5f65fbcae08bf33a064b790c9
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Thu May 12 14:51:23 2022 +0800
+
+    add function: user can update their profile
+
+commit 4046c2f8c72e762e76a24e61aa72777f50ee1fa4
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Thu May 12 14:31:58 2022 +0800
+
+    add user profile page
+
+commit a0ba32b252c6d5e2a72a796ef9d3ba018a609b90
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 11 19:08:40 2022 +0800
+
+    delete guest model
+
+commit b394ccd1cd0111f04e20ba326bbee29d34810958
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 11 19:08:08 2022 +0800
+
+    add game.html
+
+commit a349d3ac4549f65d0f02a34ac375344adb48ce88
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sat May 7 22:40:41 2022 +0800
+
+    remove useless id for each question
+
+commit 17f1b3575764c8132b9c29bb7104d42d6ec19490
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sat May 7 22:36:58 2022 +0800
+
+    bug fixed: empty database created
+
+commit b99c44d6714597b18a439725d6a3262ff3831a17
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Wed May 4 17:12:55 2022 +0800
+
+    set global configuration
+
+commit 2c1679f038890aa8278e7e54a6678a84e562970c
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Wed May 4 17:10:09 2022 +0800
+
+    Added flask-login module
+
+commit 16e6ee81cfb60a1c46238241786c2d18e78ac06d
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Wed May 4 16:46:26 2022 +0800
+
+    Added flask-login module & bug fixed: for creating duplicate database
+
+commit e658ec6f058e6d18fc1a2de158f52060513a551c
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Wed May 4 16:37:09 2022 +0800
+
+    given an id for each question
+
+commit 70a6057ce244fd4792d7f1127ad0b1a1403964e5
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 4 15:36:18 2022 +0800
+
+    Update the Remember Me feature
+
+commit 7b82c686d7307813ab9ebec1a22562b9b8b73dd5
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 4 15:18:01 2022 +0800
+
+    The update introduces bootstrap links that prevent forms from being submitted by default
+
+commit e419191f9eaf5f2d93d158312d5845a020e3760c
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 4 15:15:52 2022 +0800
+
+    Add tourist mode and record account function, filter user input before and after the space
+
+commit de4cdd768bd197abe899d58ab7b7bc05988ca04a
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 4 14:39:59 2022 +0800
+
+    Prevent forms from being submitted by default
+
+commit 1e09ba2616c5750fcba03c7f1e8eb797172dae23
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed May 4 14:29:55 2022 +0800
+
+    import bootstrap
+
+commit 29696832c3002e426942fee3d186f9c67b812963
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Tue May 3 16:45:06 2022 +0800
+
+    add ajax's url and deal with reponse, if success go to login url, or alert message
+
+commit 6bd1dc7f3ad11237c00ea7b5e65b91621cf77b84
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Tue May 3 16:38:07 2022 +0800
+
+    add ajax's url and deal with response
+
+commit 738acb1b6d3788525d4f3aa8efbf1200d179d677
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Tue May 3 16:14:31 2022 +0800
+
+    Registration page, to help users register accounts
+
+commit 3bdebcb0397981d77900bfd320de2ba950e775bd
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Tue May 3 16:13:20 2022 +0800
+
+    Delete required from <input> and use js to ensure that username and password are not null.
+
+commit b5a38c1522f3424f839079ee2f1c6924d6d448a4
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Thu Apr 28 15:34:26 2022 +0800
+
+    bug fixed that looking for a non-existing username from database, and change the file name from app.py to routes.py
+
+commit e0745b95b4dfc053a649849a189f2a8abf7cbbeb
+Author: MelvinHuangDongDong <103872839+MelvinHuangDongDong@users.noreply.github.com>
+Date:   Wed Apr 27 16:38:08 2022 +0800
+
+    first commit: login page
+
+commit 9ff09def6fa91b75e038c88a922c23f7d47c8ce4
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Tue Apr 26 22:16:40 2022 +0800
+
+    encrypt user's password before adding it to the database
+
+commit c0a25b6e1eb00200de181c42de76ff0b7b8bb506
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Tue Apr 26 21:23:26 2022 +0800
+
+    add functions for: generate_password_hash, check_password_hash
+
+commit b0433b3412b8f0c7ca5b8c2e5e8a99e499ac389e
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Tue Apr 26 21:18:38 2022 +0800
+
+    update Password Column in Users Table to store the hash value of password
+
+commit c443e97bbb9ca6c847b8d50c56b3e36fae721404
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Mon Apr 25 17:39:54 2022 +0800
+
+    update get_question method: Randomly extract a question from database
+
+commit 224fdd86116577d9d5ab1561db52646ba21c5f01
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Mon Apr 25 17:31:31 2022 +0800
+
+    read QA.txt file and store questions and answers in database
+
+commit c913ce3cafb3b033e8ab06b1a7d1fce63d837b3b
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Mon Apr 25 17:25:53 2022 +0800
+
+    upload questions and answers
+
+commit fd6edf83fa98718b6c6ffffb999db86ae541cb07
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Sun Apr 24 17:49:10 2022 +0800
+
+    first commit: backend for user login and register page (including database initialization)
+
+commit 77bc8da2e529ebbffbe3409b3ed4025d707bab27
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Mon Apr 18 23:01:27 2022 +0800
+
+    ignore .DS_Store file
+
+commit 7d3e0be7c87bb7083187d459442d80203e180446
+Author: Yupeng Li <lypa520@gmail.com>
+Date:   Mon Apr 18 22:55:12 2022 +0800
+
+    initial commit
