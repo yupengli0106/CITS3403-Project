@@ -181,8 +181,9 @@ def share():
             if user.user_id==current_user.id:
                 total_score=user[1]
                 break
-        return {'user_id':current_user.id, 'username':current_user.name, 'ranking':user_rank, 'score':total_score}
-    return render_template('share.html')
+        return {'user_id':current_user.id, 'username':current_user.username, 'ranking':user_rank, 'score':total_score}
+    return {'user_id':current_user.id, 'username':current_user.username, 'ranking':user_rank, 'score':total_score}
+    
 
 # ---------------------admin controller-----------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/admin_question_list', methods=['POST', 'GET'])

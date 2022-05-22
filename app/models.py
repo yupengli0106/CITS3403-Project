@@ -35,7 +35,7 @@ class ScoreModel(db.Model):
     __tablename__ = 'scores'
     user_id = db.Column(db.Integer,  primary_key=True, nullable=False)
     ques_id = db.Column(db.Integer,  primary_key=True, nullable=False)
-    socre = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Integer, nullable=False)
 
 # initialize the database
 class FileReader():
