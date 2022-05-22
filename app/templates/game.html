@@ -18,8 +18,15 @@
   				<span class="glyphicon glyphicon-adjust" aria-hidden="true" id="theme_turn"></span>
   				<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
 			</span>
-			<span class="head_title">Let's Go History！</span>
+			<span class="head_title">Let's Go History!</span>
 			<span id="head_right" class="head_right">
+				<a href="/profile.html">
+					{% if current_user.is_authenticated %}
+						{{current_user.username}}
+					{% else %}
+						Stranger
+					{% endif %}
+				</a>
 				<a href="/logout"  aria-label="Left Align" id="logout"> logout </a>
   				<span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="modal" data-target="#game_shows"></span>
   				<span class="glyphicon glyphicon-align-left" aria-hidden="true" id="static_turn"></span>
@@ -65,7 +72,7 @@
 						<li class="static_data"><span id="success_static_streak">1</span><br/><span>Max Streak</span></li>
 						<li class="static_data"><span id="success_static_time">2mins</span><br/><span>Time</span></li>
 					</ul>
-					Congratulations you answered right！Study hard, improve every day！
+					Congratulations you got it right!
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
@@ -83,7 +90,7 @@
 						</button>
 				</div>
 				<div class="modal-body">
-					Please start again, come on！！！！！！
+					One more time, come on!!!
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Try it next time</button>
@@ -106,6 +113,7 @@
 					<p>1. Enter the year of the event according to the topic</p>
 					<p>2. With the right position and the right number, the grid turns gold. It's the right number but it's in the wrong place and the grid will turn green. With the wrong number and the wrong position, the grid will turn red.</p>
 					<p>3. There are only six chances, and six wrong answers mean failure</p>
+					<p>socre = 6/streak</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Understood</button>
