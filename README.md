@@ -8,7 +8,7 @@ Activate the python virtual environment:
 
 `$ . venv/bin/activate`
 
-To run the app:
+To run the app: before running the following command, you must ensure that the database is configured.
 
 `$ python -m run`
 
@@ -97,6 +97,6 @@ Please read `git-logs.txt` for details.
 
 Follow the Lectures and Workshops by *Tim*, and *Tom*.
 
-[clipboard.js v2.0.11](https://clipboardjs.com/) Licensed MIT © Zeno Rocha
+[clipboard.js v2.0.11](https://clipboardjs.com/) Licensed MIT © *Zeno Rocha*
 
 Quizzes from [TutorialSpoint](https://www.tutorialspoint.com/general_knowledge/general_knowledge_world_history_timeline.htm)
