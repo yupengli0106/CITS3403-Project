@@ -110,7 +110,7 @@ def get_question():
             ans = question.answer
              # if the user has answered all the questions then return game over
             if ScoreModel.query.filter_by(user_id=current_user.id).count() == QuestionModel.query.count():
-                return "game over"
+                return {'status': 'game_over'}
              # check if the question has been answered correctly by the user
             if ScoreModel.query.filter_by(user_id=current_user.id, ques_id=question.id).first() is not None:
                 continue
