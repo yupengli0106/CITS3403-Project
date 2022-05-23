@@ -18,11 +18,8 @@ class UserModelCase(unittest.TestCase):
     s1.encode_password('test')
     s2 = UserModel(username='admin', admin=True)
     s2.encode_password('admin')
-    q1 = QuestionModel(content='question1', answer='1')
-    q2 = QuestionModel(content='question2', answer='2')
 
-
-    db.session.add_all([s1, s2, q1, q2])
+    db.session.add_all([s1, s2])
     db.session.commit()
 
   def tearDown(self):
@@ -67,51 +64,6 @@ class UserModelCase(unittest.TestCase):
     json_data = json.loads(response.data)
     self.assertIn('status', json_data)
     self.assertEqual(json_data['status'], 'fail')
-
-  def test_get_all_questions(self):
-    response = self.client.get('/admin_question_list')
-    json_data = json.loads(response.data)
-    self.assertIn('question_list', json_data)
-    self.assertEqual(json_data['question_list'], [{'id':1,'content': 'question1', 'answer': '1'}, {'id':2,'content': 'question2', 'answer': '2'}])
-
-  def test_search_by_keywords(self):
-    response = self.client.get('/admin_question_list?keywords=question')
-    json_data = json.loads(response.data)
-    self.assertIn('question_list', json_data)
-    self.assertEqual(json_data['question_list'], [{'id':1,'content': 'question1', 'answer': '1'}, {'id':2,'content': 'question2', 'answer': '2'}])
-
-  def test_get_question_by_id(self):
-    response = self.client.get('/admin_get_question/1')
-    json_data = json.loads(response.data)
-    self.assertEqual(json_data['content'], 'question1')
-    self.assertEqual(json_data['answer'], '1')
-
-  def test_delete_question_by_id(self):
-    response = self.client.post('/admin_delete_question/2')
-    json_data = json.loads(response.data)
-    self.assertEqual(json_data['status'], 'success')
-
-    response = self.client.get('/admin_delete_question/3')
-    json_data = json.loads(response.data)
-    self.assertEqual(json_data['status'], 'fail')
-
-  def test_add_question(self):
-    response = self.client.post('/admin_add_question', data=dict(content='question3', answer='3'))
-    json_data = json.loads(response.data)
-    self.assertEqual(json_data['status'], 'success')
-
-    q3 = QuestionModel.query.filter_by(content='question3').first()
-    self.assertEqual(q3.content, 'question3')
-    self.assertEqual(q3.answer, '3')
-
-  def test_edit_question(self):
-    response = self.client.post('/admin_edit_question/1', data=dict(content='question1_edited', answer='1_edited'))
-    json_data = json.loads(response.data)
-    self.assertEqual(json_data['status'], 'success')
-
-    q1 = QuestionModel.query.filter_by(id=1).first()
-    self.assertEqual(q1.content, 'question1_edited')
-    self.assertEqual(q1.answer, '1_edited')
 
 
 
